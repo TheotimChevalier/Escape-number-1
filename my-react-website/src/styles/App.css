@@ -1,0 +1,168 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #232526, #414345 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.escape-container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: rgba(30, 30, 30, 0.97);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    padding: 32px 24px 16px 24px;
+    color: #f3f3f3;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.subtitle {
+    color: #ffb347;
+    font-size: 1.2em;
+    margin-top: 8px;
+}
+
+.red-btn {
+    background: #ff3b3b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.red-btn:hover {
+    background: #c70000;
+}
+
+.fake-link {
+    text-decoration: underline;
+}
+
+.chrono-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.chrono {
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background: #222;
+    border-radius: 12px;
+    padding: 18px 40px;
+    margin-bottom: 16px;
+    color: #00ffb3;
+    box-shadow: 0 2px 8px #0008;
+    transition: color 0.3s;
+}
+
+.chrono-finished {
+    color: #ff3b3b;
+    background: #2a0000;
+    animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+.chrono-buttons button {
+    margin: 0 8px;
+    padding: 10px 22px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: none;
+    background: #ffb347;
+    color: #222;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.chrono-buttons button:disabled {
+    background: #888;
+    color: #333;
+    cursor: not-allowed;
+}
+
+.chrono-buttons {
+    margin-bottom: 8px;
+}
+
+main {
+    margin-top: 24px;
+}
+
+h2 {
+    color: #00ffb3;
+    margin-bottom: 12px;
+}
+
+.enigmes-zone {
+    background: #181818;
+    border-radius: 10px;
+    padding: 24px;
+    min-height: 120px;
+    box-shadow: 0 2px 8px #0005;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.pacman-game {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pacman-row {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.dot {
+    color: #ffb347;
+    margin: 0 8px;
+    transition: color 0.2s;
+}
+
+.dot.eaten {
+    color: #181818;
+}
+
+.pacman {
+    margin-left: 16px;
+}
+
+.reward {
+    color: #00ffb3;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.hidden-code {
+    background: #181818;
+    color: #181818;
+    user-select: text;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 32px;
+    color: #ffb347;
+    font-size: 1.1em;
+}
