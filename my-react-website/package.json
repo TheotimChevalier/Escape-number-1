@@ -18,9 +18,8 @@
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-scripts": "5.0.0"
+    "react-scripts": "^0.0.0"
   },
-  "devDependencies": {},
   "homepage": "http://my-react-website.com",
   "browserslist": {
     "production": [
