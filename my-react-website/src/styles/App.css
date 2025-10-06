@@ -155,7 +155,6 @@ h2 {
 .hidden-code {
     background: #181818;
     color: #181818;
-    user-select: text;
     padding: 2px 8px;
     border-radius: 4px;
 }
