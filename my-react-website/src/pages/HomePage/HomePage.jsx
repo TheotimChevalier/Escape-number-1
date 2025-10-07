@@ -12,10 +12,11 @@ const HomePage = () => {
       setShowButtonRed(true);
     };
     return (
-        <div>
+        <div className="container_home">
             {/* Si tu veux afficher une image, décommente la ligne suivante et importe Play */}
             {/* <img className="playIcon" src={Play} alt="icone play" /> */}
             <h1>Bienvenue dans notre escape game</h1>
+            <div>
             <button 
                 type="button" 
                 className="red_button"
@@ -24,6 +25,7 @@ const HomePage = () => {
                 Démarrer
             </button>
             {showButtonRed && <ButtonRed />}
+            </div>
 
         </div>
     );
