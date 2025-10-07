@@ -1,0 +1,29 @@
+name: React App - Start Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  start-react:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start React app
+        run: |
+          npm start &
+          sleep 10
+          curl -f http://localhost:3000 || (echo "Server failed to start" && exit 1)
