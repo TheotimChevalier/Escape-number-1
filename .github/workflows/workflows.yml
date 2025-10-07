@@ -25,4 +25,5 @@ jobs:
       - name: Start React app
         run: |
           npm start
+
           sleep 10000
