@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./styles/App.css";
+import { Outlet } from "react-router-dom";
+
 
 const MAX_SECONDS = 45 * 60; // 45 minutes
 
@@ -128,6 +130,7 @@ function App() {
         </div>
       </div>
       <main>
+        <Outlet />
         {step === 0 && (
           <div className="enigmes-zone">
             <p>
