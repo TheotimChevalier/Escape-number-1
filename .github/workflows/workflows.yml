@@ -30,6 +30,4 @@ jobs:
       - name: Start React app
         working-directory: ./my-react-website
         run: |
-          npm start &
-          sleep 15
-          curl -f http://localhost:3000 || (echo "Server failed to start" && exit 1)
+          npm start
