@@ -2,9 +2,9 @@ name: React App - Start Test
 
 on:
   push:
-    branches: [ "Anis" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "Anis" ]
+    branches: [ "main" ]
 
 jobs:
   start-react:
@@ -19,11 +19,17 @@ jobs:
         with:
           node-version: 20
 
+      - name: Go to project folder
+        working-directory: ./my-react-website
+        run: echo "Moved into React app directory"
+
       - name: Install dependencies
+        working-directory: ./my-react-website
         run: npm install
 
       - name: Start React app
+        working-directory: ./my-react-website
         run: |
-          npm start
-
-          sleep 10000
+          npm start &
+          sleep 15
+          curl -f http://localhost:3000 || (echo "Server failed to start" && exit 1)
