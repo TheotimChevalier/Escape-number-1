@@ -2,9 +2,9 @@ name: React App - Start Test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "Anis" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "Anis" ]
 
 jobs:
   start-react:
