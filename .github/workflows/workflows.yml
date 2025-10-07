@@ -29,5 +29,4 @@ jobs:
 
       - name: Start React app
         working-directory: ./my-react-website
-        run: |
-          npm start
+        run: npm start
