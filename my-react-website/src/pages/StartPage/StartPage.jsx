@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import "./styles/App.css";
 import { Outlet } from "react-router-dom";
+import "../../styles/App.css";
 
 
 const MAX_SECONDS = 45 * 60; // 45 minutes
