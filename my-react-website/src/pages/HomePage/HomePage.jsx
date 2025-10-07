@@ -1,9 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 import "./HomePage.css"; 
+import ButtonRed from "../../components/ButonRed/ButtonRed"
 import "../../styles/App.css";
 // import Play from 'chemin/vers/play.png'; // Décommente et corrige le chemin si tu veux une icône
 
 const HomePage = () => {
+    const [showButtonRed, setShowButtonRed] = useState(false);
+
+    const handleClick = () => {
+      setShowButtonRed(true);
+    };
     return (
         <div>
             {/* Si tu veux afficher une image, décommente la ligne suivante et importe Play */}
@@ -12,10 +19,12 @@ const HomePage = () => {
             <button 
                 type="button" 
                 className="red_button"
-                // onClick={restartGame} // Décommente et définis restartGame si tu veux une action
+                onClick={handleClick}
             >
                 Démarrer
             </button>
+            {showButtonRed && <ButtonRed />}
+
         </div>
     );
 };
