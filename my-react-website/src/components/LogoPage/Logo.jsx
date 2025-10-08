@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "../../styles/App.css";
 
 // --- Icônes ---
@@ -45,11 +45,19 @@ const baseLogos = [
   { src: lightning, alt: "eclair", clickable: false },
 ];
 
+function isOverlapping(a, b) {
+  return !(
+    a.left + a.size < b.left ||
+    a.left > b.left + b.size ||
+    a.top + a.size < b.top ||
+    a.top > b.top + b.size
+  );
+}
+
 export default function Logo() {
-const [activeComponent, setActiveComponent] = useState(null);
+  const [activeComponent, setActiveComponent] = useState(null);
   const [escapeRect, setEscapeRect] = useState(null);
 
-  // On récupère la zone escape-container
   useEffect(() => {
     const container = document.querySelector(".escape-container");
     if (container) {
@@ -58,42 +66,64 @@ const [activeComponent, setActiveComponent] = useState(null);
   }, []);
 
   const randomized = useMemo(() => {
-    return baseLogos.map((logo) => {
-      let top, left;
+    if (!escapeRect) return [];
 
-      if (escapeRect) {
-        const winWidth = window.innerWidth;
-        const winHeight = window.innerHeight;
+    const winWidth = window.innerWidth;
+    const winHeight = window.innerHeight;
+    const placed = [];
 
-        // Zone verticale au-dessus ou en dessous de escape-container
-        const verticalZones = [
-          { min: 0, max: escapeRect.top - 50 }, // au-dessus
-          { min: escapeRect.bottom + 50, max: winHeight - 50 }, // en dessous
-        ];
-        const verticalZone = verticalZones[Math.floor(Math.random() * verticalZones.length)];
-        top = Math.random() * (verticalZone.max - verticalZone.min) + verticalZone.min;
+    for (const logo of baseLogos) {
+      let positionValid = false;
+      let attempt = 0;
+      let top = 0;
+      let left = 0;
+      const size = Math.random() * 25 + 35;
 
-        // Zone horizontale à gauche ou à droite du escape-container
-        const horizontalZones = [
-          { min: 0, max: escapeRect.left - 50 }, // à gauche
-          { min: escapeRect.right + 50, max: winWidth - 50 }, // à droite
-        ];
-        const horizontalZone = horizontalZones[Math.floor(Math.random() * horizontalZones.length)];
-        left = Math.random() * (horizontalZone.max - horizontalZone.min) + horizontalZone.min;
-      } else {
-        top = Math.random() * 80 + 10;
-        left = Math.random() * 80 + 10;
+      while (!positionValid && attempt < 200) {
+        attempt++;
+        const zone = Math.floor(Math.random() * 4); // 0=haut,1=bas,2=gauche,3=droite
+
+        switch (zone) {
+          case 0: // haut
+            top = Math.random() * (escapeRect.top - size);
+            left = Math.random() * winWidth;
+            break;
+          case 1: // bas
+            top = escapeRect.bottom + Math.random() * (winHeight - escapeRect.bottom - size);
+            left = Math.random() * winWidth;
+            break;
+          case 2: // gauche
+            top = Math.random() * winHeight;
+            left = Math.random() * (escapeRect.left - size);
+            break;
+          case 3: // droite
+            top = Math.random() * winHeight;
+            left = escapeRect.right + Math.random() * (winWidth - escapeRect.right - size);
+            break;
+          default:
+            break;
+        }
+
+        // Correction pour rester dans les bords visibles
+        top = Math.max(0, Math.min(winHeight - size, top));
+        left = Math.max(0, Math.min(winWidth - size, left));
+
+        const current = { top, left, size };
+
+        // Vérifie qu’il ne chevauche pas un logo déjà placé
+        positionValid = !placed.some((p) => isOverlapping(p, current));
+        if (positionValid) placed.push(current);
       }
+    }
 
-      return {
-        ...logo,
-        top: `${top}px`,
-        left: `${left}px`,
-        size: `${Math.random() * 25 + 35}px`,
-        rotation: `${Math.random() * 360}deg`,
-      };
-    });
-  }, [escapeRect]);
+    return placed.map((pos, i) => ({
+      ...baseLogos[i],
+      top: `${pos.top}px`,
+      left: `${pos.left}px`,
+      size: `${pos.size}px`,
+      rotation: `${Math.random() * 360}deg`,
+    }));
+  }, [escapeRect])
 
   const handleClick = (logo) => {
     switch (logo.type) {
