@@ -62,8 +62,8 @@ export default function PacMan({ onClose }) {
             onWin={handleWin}
             onScoreChange={handleScoreChange}
             onLivesChange={handleLivesChange}
-            ghostSpeed={0.75}
-            pacmanSpeed={0.8}
+            ghostSpeed={1.67}
+            pacmanSpeed={0.1}
             animate={true}
             level={1}
           />
