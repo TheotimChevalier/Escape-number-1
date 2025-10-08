@@ -6,7 +6,7 @@
 
 .red_button {
     cursor: pointer;
-    background-color: rgb(38, 0, 255);
+    background-color: rgb(255, 0, 0);
     color: white;
     size: 5rem; 
     border-radius: 1rem;

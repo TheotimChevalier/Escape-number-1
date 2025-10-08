@@ -139,23 +139,7 @@ function App() {
             </p>
           </div>
         )}
-        {step === 1 && (
-          <div className="enigmes-zone">
-            <h2>Énigme 1 : Clique sur l'emoji</h2>
-            <p>
-              Pour avancer, il faut cliquer sur le bon emoji&nbsp;:
-              <span
-                style={{ fontSize: "2em", cursor: "pointer", marginLeft: 10 }}
-                onClick={() => { setEmojiSolved(true); goToStep(2); }}
-                role="img"
-                aria-label="clé"
-              >🔑</span>
-            </p>
-            <p>
-              (Indice : ce n'est pas le bouton, mais l'emoji !)
-            </p>
-          </div>
-        )}
+      
         {step === 2 && (
           <div className="enigmes-zone">
             <h2>Mini-jeu Pac-Man</h2>
