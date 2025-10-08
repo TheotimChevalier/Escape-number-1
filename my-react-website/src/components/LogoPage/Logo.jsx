@@ -2,29 +2,29 @@ import React, { useState, useMemo } from "react";
 import "../../styles/App.css";
 
 // --- Icônes ---
-import pacman from "../assets/pacman.svg";
-import ghostRed from "../assets/ghost-red.svg";
-import ghostBlue from "../assets/ghost-blue.svg";
-import ghostPink from "../assets/ghost-pink.svg";
-import ghostGreen from "../assets/ghost-green.svg";
-import star from "../assets/star.svg";
-import heart from "../assets/heart.svg";
-import apple from "../assets/apple.svg";
-import cherry from "../assets/cherry.svg";
-import strawberry from "../assets/strawberry.svg";
-import orangeFruit from "../assets/orange.svg";
-import plum from "../assets/plum.svg";
-import bell from "../assets/bell.svg";
-import diamond from "../assets/diamond.svg";
-import bomb from "../assets/bomb.svg";
-import mushroom from "../assets/mushroom.svg";
-import lightning from "../assets/lightning.svg";
+import pacman from "../Asset/pacman.jfif";
+import ghostRed from "../Asset/ghost-red.svg";
+import ghostBlue from "../Asset/ghost-blue.svg";
+import ghostPink from "../Asset/ghost-pink.svg";
+import ghostOrange from "../Asset/ghost-ornange.svg";
+import star from "../Asset/star.svg";
+import heart from "../Asset/heart.svg";
+import apple from "../Asset/apple.svg";
+import cherry from "../Asset/cherry.svg";
+import strawberry from "../Asset/strawberry.svg";
+import orangeFruit from "../Asset/orange.svg";
+import plum from "../Asset/plum.svg";
+import bell from "../Asset/bell.svg";
+import diamond from "../Asset/diamond.svg";
+import bomb from "../Asset/bomb.svg";
+import mushroom from "../Asset/mushroom.svg";
+import lightning from "../Asset/lightning.svg";
 
 // --- Composants pour les mini-jeux / quiz ---
 import RedGhostQuiz from "../RedGhostQuiz/RedGhostQuiz";
 import BlueGhostPics from "../BlueGhostPics/BlueGhostPics";
 import PinkGhostDrackMode from "../PinkGhostDarckMode/PinkGhostDarckMode";
-import GreenGhostRebut from "../GreenGhostRebut/GreenGhostRebut";
+import OrangeGhostRebut from "../OrangeGhostRebut/OrangeGhostRebut";
 import PacMan from "../PacMan/PacMan"; // ton mini-jeu Pac-Man
 
 const baseLogos = [
@@ -32,7 +32,7 @@ const baseLogos = [
   { src: ghostRed, alt: "fantome rouge", clickable: true, type: "red" },
   { src: ghostBlue, alt: "fantome bleu", clickable: true, type: "blue" },
   { src: ghostPink, alt: "fantome rose", clickable: true, type: "pink" },
-  { src: ghostGreen, alt: "fantome vert", clickable: true, type: "green" },
+  { src: ghostGreen, alt: "fantome orange", clickable: true, type: "orange" },
   { src: star, alt: "etoile", clickable: false },
   { src: heart, alt: "coeur", clickable: false },
   { src: apple, alt: "pomme", clickable: false },
@@ -48,7 +48,7 @@ const baseLogos = [
 ];
 
 export default function Logo() {
-  const [activeComponent, setActiveComponent] = useState(null); // "red", "blue", "pink", "green", "pacman"
+  const [activeComponent, setActiveComponent] = useState(null); // "red", "blue", "pink", "orange", "pacman"
 
   const randomized = useMemo(() => {
     return baseLogos.map((logo) => ({
@@ -71,8 +71,8 @@ export default function Logo() {
       case "pink":
         setActiveComponent("pink");
         break;
-      case "green":
-        setActiveComponent("green");
+      case "orange":
+        setActiveComponent("orange");
         break;
       case "pacman":
         setActiveComponent("pacman");
@@ -105,7 +105,7 @@ export default function Logo() {
       {activeComponent === "red" && <RedGhostQuiz onClose={closeComponent} />}
       {activeComponent === "blue" && <BlueGhostPics onClose={closeComponent} />}
       {activeComponent === "pink" && <PinkGhostDrackMode onClose={closeComponent} />}
-      {activeComponent === "green" && <GreenGhostRebut onClose={closeComponent} />}
+      {activeComponent === "orange" && <OrangeGhostRebut onClose={closeComponent} />}
       {activeComponent === "pacman" && <PacMan onWin={closeComponent} />}
     </div>
   );

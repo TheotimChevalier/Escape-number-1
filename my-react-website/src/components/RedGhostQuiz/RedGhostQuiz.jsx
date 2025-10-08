@@ -1,20 +1,47 @@
 // src/components/RedGhostQuiz.jsx
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
-const questions = [
+// 🔹 Liste de 30 questions Pac-Man et bornes d'arcade
+const allQuestions = [
   { question: "En quelle année Pac-Man est-il sorti ?", answer: "1980" },
   { question: "Quel est le nom du fantôme rouge ?", answer: "blinky" },
   { question: "Quel est le nom du fantôme bleu ?", answer: "inky" },
   { question: "Quel est le nom du fantôme rose ?", answer: "pinky" },
   { question: "Quel est le nom du fantôme vert/orange ?", answer: "clyde" },
-  { question: "Quel est le fruit bonus qui rapporte le plus de points dans Pac-Man ?", answer: "cerise" },
-  { question: "Quelle entreprise a créé Pac-Man ?", answer: "namco" },
+  { question: "Quel fruit bonus rapporte le plus de points dans Pac-Man ?", answer: "cerise" },
+  { question: "Combien de fantômes poursuivent Pac-Man ?", answer: "4" },
+  { question: "Quelle est la couleur du fantôme Blinky ?", answer: "rouge" },
+  { question: "Quelle est la couleur du fantôme Inky ?", answer: "bleu" },
+  { question: "Quelle est la couleur du fantôme Pinky ?", answer: "rose" },
+  { question: "Quelle est la couleur du fantôme Clyde ?", answer: "orange" },
   { question: "Combien de points vaut une pastille normale ?", answer: "10" },
-  { question: "Quel est le record mondial de score parfait dans Pac-Man ?", answer: "333360" },
-  { question: "Les bornes d'arcade originales étaient principalement en bois ou métal ?", answer: "bois" },
+  { question: "Combien de points vaut une pastille spéciale (power pellet) ?", answer: "50" },
+  { question: "Combien de points vaut une cerise ?", answer: "100" },
+  { question: "Quel fruit apparaît après la 100ème pastille ?", answer: "fraise" },
+  { question: "Pac-Man devait-il manger tous les points pour finir un niveau ?", answer: "oui" },
+  { question: "Quel est le fantôme le plus rapide ?", answer: "inky" },
+  { question: "Quelle entreprise a créé Pac-Man ?", answer: "namco" },
+  { question: "Quel est le score parfait possible dans Pac-Man ?", answer: "333360" },
+  { question: "Combien de niveaux Pac-Man a-t-il au total ?", answer: "256" },
+  { question: "Les bornes d’arcade originales étaient principalement en bois ou métal ?", answer: "bois" },
+  { question: "Dans quel pays est née l’industrie des jeux d’arcade ?", answer: "japon" },
+  { question: "Quel est le nom du créateur de Pac-Man ?", answer: "toru iwatani" },
+  { question: "Quelle borne d’arcade est connue pour Space Invaders ?", answer: "taito" },
+  { question: "Quelle borne d’arcade a popularisé Donkey Kong ?", answer: "nintendo" },
+  { question: "En quelle année Space Invaders est-il sorti ?", answer: "1978" },
+  { question: "Quelle borne a introduit le joystick pour la première fois ?", answer: "atari pong" },
+  { question: "Quel est le nom de l’ennemi principal dans Donkey Kong ?", answer: "donkey kong" },
+  { question: "Quelle borne d’arcade a le score le plus élevé jamais enregistré ?", answer: "pac-man" },
+  { question: "Quel accessoire était souvent utilisé pour tricher sur les bornes d’arcade ?", answer: "coin drop" },
 ];
 
 export default function RedGhostQuiz({ onClose }) {
+  // 🔹 On choisit 10 questions aléatoires au montage
+  const questions = useMemo(() => {
+    const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 10);
+  }, []);
+
   const [answers, setAnswers] = useState(Array(questions.length).fill(""));
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
@@ -97,5 +124,5 @@ export default function RedGhostQuiz({ onClose }) {
         </>
       )}
     </div>
-  )
+  );
 }
