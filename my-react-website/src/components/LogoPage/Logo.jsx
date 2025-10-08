@@ -48,17 +48,54 @@ const baseLogos = [
 ];
 
 export default function Logo() {
-  const [activeComponent, setActiveComponent] = useState(null); // "red", "blue", "pink", "orange", "pacman"
+const [activeComponent, setActiveComponent] = useState(null);
+  const [escapeRect, setEscapeRect] = useState(null);
+
+  // On récupère la zone escape-container
+  useEffect(() => {
+    const container = document.querySelector(".escape-container");
+    if (container) {
+      setEscapeRect(container.getBoundingClientRect());
+    }
+  }, []);
 
   const randomized = useMemo(() => {
-    return baseLogos.map((logo) => ({
-      ...logo,
-      top: `${Math.random() * 85 + 5}%`,
-      left: `${Math.random() * 85 + 5}%`,
-      size: `${Math.random() * 25 + 35}px`,
-      rotation: `${Math.random() * 360}deg`,
-    }));
-  }, []);
+    return baseLogos.map((logo) => {
+      let top, left;
+
+      if (escapeRect) {
+        const winWidth = window.innerWidth;
+        const winHeight = window.innerHeight;
+
+        // Zone verticale au-dessus ou en dessous de escape-container
+        const verticalZones = [
+          { min: 0, max: escapeRect.top - 50 }, // au-dessus
+          { min: escapeRect.bottom + 50, max: winHeight - 50 }, // en dessous
+        ];
+        const verticalZone = verticalZones[Math.floor(Math.random() * verticalZones.length)];
+        top = Math.random() * (verticalZone.max - verticalZone.min) + verticalZone.min;
+
+        // Zone horizontale à gauche ou à droite du escape-container
+        const horizontalZones = [
+          { min: 0, max: escapeRect.left - 50 }, // à gauche
+          { min: escapeRect.right + 50, max: winWidth - 50 }, // à droite
+        ];
+        const horizontalZone = horizontalZones[Math.floor(Math.random() * horizontalZones.length)];
+        left = Math.random() * (horizontalZone.max - horizontalZone.min) + horizontalZone.min;
+      } else {
+        top = Math.random() * 80 + 10;
+        left = Math.random() * 80 + 10;
+      }
+
+      return {
+        ...logo,
+        top: `${top}px`,
+        left: `${left}px`,
+        size: `${Math.random() * 25 + 35}px`,
+        rotation: `${Math.random() * 360}deg`,
+      };
+    });
+  }, [escapeRect]);
 
   const handleClick = (logo) => {
     switch (logo.type) {
