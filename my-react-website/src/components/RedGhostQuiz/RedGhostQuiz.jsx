@@ -73,6 +73,7 @@ export default function RedGhostQuiz({ onClose }) {
   return (
     <div style={{
       position: "fixed",
+      color:"black",
       top: "5%",
       left: "50%",
       transform: "translateX(-50%)",

@@ -6,7 +6,7 @@ import pacman from "../Asset/pacman.jfif";
 import ghostRed from "../Asset/ghost-red.svg";
 import ghostBlue from "../Asset/ghost-blue.svg";
 import ghostPink from "../Asset/ghost-pink.svg";
-import ghostOrange from "../Asset/ghost-ornange.svg";
+import ghostOrange from "../Asset/ghost-orange.svg";
 import star from "../Asset/star.svg";
 import heart from "../Asset/heart.svg";
 import apple from "../Asset/apple.svg";
@@ -16,14 +16,13 @@ import orangeFruit from "../Asset/orange.svg";
 import plum from "../Asset/plum.svg";
 import bell from "../Asset/bell.svg";
 import diamond from "../Asset/diamond.svg";
-import bomb from "../Asset/bomb.svg";
 import mushroom from "../Asset/mushroom.svg";
-import lightning from "../Asset/lightning.svg";
+import lightning from "../Asset/lighting.svg";
 
 // --- Composants pour les mini-jeux / quiz ---
 import RedGhostQuiz from "../RedGhostQuiz/RedGhostQuiz";
 import BlueGhostPics from "../BlueGhostPics/BlueGhostPics";
-import PinkGhostDrackMode from "../PinkGhostDarckMode/PinkGhostDarckMode";
+import PinkGhostDarckMode from "../PinkGhostDarckMode/PinkGhostDarckMode";
 import OrangeGhostRebut from "../OrangeGhostRebut/OrangeGhostRebut";
 import PacMan from "../PacMan/PacMan"; // ton mini-jeu Pac-Man
 
@@ -32,7 +31,7 @@ const baseLogos = [
   { src: ghostRed, alt: "fantome rouge", clickable: true, type: "red" },
   { src: ghostBlue, alt: "fantome bleu", clickable: true, type: "blue" },
   { src: ghostPink, alt: "fantome rose", clickable: true, type: "pink" },
-  { src: ghostGreen, alt: "fantome orange", clickable: true, type: "orange" },
+  { src: ghostOrange, alt: "fantome orange", clickable: true, type: "orange" },
   { src: star, alt: "etoile", clickable: false },
   { src: heart, alt: "coeur", clickable: false },
   { src: apple, alt: "pomme", clickable: false },
@@ -42,7 +41,6 @@ const baseLogos = [
   { src: plum, alt: "prune", clickable: false },
   { src: bell, alt: "cloche", clickable: false },
   { src: diamond, alt: "diamant", clickable: false },
-  { src: bomb, alt: "bombe", clickable: false },
   { src: mushroom, alt: "champignon", clickable: false },
   { src: lightning, alt: "eclair", clickable: false },
 ];
@@ -104,7 +102,7 @@ export default function Logo() {
 
       {activeComponent === "red" && <RedGhostQuiz onClose={closeComponent} />}
       {activeComponent === "blue" && <BlueGhostPics onClose={closeComponent} />}
-      {activeComponent === "pink" && <PinkGhostDrackMode onClose={closeComponent} />}
+      {activeComponent === "pink" && <PinkGhostDarckMode onClose={closeComponent} />}
       {activeComponent === "orange" && <OrangeGhostRebut onClose={closeComponent} />}
       {activeComponent === "pacman" && <PacMan onWin={closeComponent} />}
     </div>
