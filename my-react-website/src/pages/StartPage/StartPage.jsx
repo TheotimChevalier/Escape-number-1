@@ -1,9 +1,6 @@
 import React, { useState, useRef } from "react";
-import { Outlet } from "react-router-dom";
 import Logo from "../../components/LogoPage/Logo";
 import "../../styles/App.css";
-
-
 
 const MAX_SECONDS = 45 * 60; // 45 minutes
 
@@ -103,6 +100,7 @@ function App() {
       <header>
         <h1>Escape Game</h1>
       </header>
+      
       <div className="chrono-section">
         <div className={`chrono ${seconds >= MAX_SECONDS ? "chrono-finished" : ""}`}>
           {seconds < MAX_SECONDS ? formatTime(seconds) : "Temps écoulé !"}
@@ -113,8 +111,11 @@ function App() {
           <button onClick={reset}>Réinitialiser</button>
         </div>
       </div>
+
+      {/* ⬇️ Logo visible en PERMANENCE sur TOUTES les étapes */}
+      <Logo onLogoClick={(alt) => alert(`Tu as cliqué sur ${alt} ! 👻`)} />
+
       <main>
-        <Outlet />
         {step === 0 && (
           <div className="enigmes-zone">
             <p>
@@ -125,28 +126,22 @@ function App() {
         )}
       
         {step === 1 && (
-  <>
-    <Logo onLogoClick={(alt) => alert(`Tu as cliqué sur ${alt} ! 👻`)} />
-
-    <div className="enigmes-zone">
-      <h2>Énigme 1 : Clique sur l'emoji</h2>
-      <p>
-        Pour avancer, il faut cliquer sur la clé&nbsp;
-        <span
-          style={{ fontSize: "2em", cursor: "pointer", marginLeft: 10 }}
-          onClick={() => goToStep(2)}
-          role="img"
-          aria-label="clé"
-        >
-          🔑
-        </span>
-      </p>
-      <p>(Indice : ce n’est pas un bouton, mais un emoji !)</p>
-    </div>
-  </>
-)}
-
-
+          <div className="enigmes-zone">
+            <h2>Énigme 1 : Clique sur l'emoji</h2>
+            <p>
+              Pour avancer, il faut cliquer sur la clé&nbsp;
+              <span
+                style={{ fontSize: "2em", cursor: "pointer", marginLeft: 10 }}
+                onClick={() => goToStep(2)}
+                role="img"
+                aria-label="clé"
+              >
+                🔑
+              </span>
+            </p>
+            <p>(Indice : ce n'est pas un bouton, mais un emoji !)</p>
+          </div>
+        )}
 
         {step === 2 && (
           <div className="enigmes-zone">
@@ -159,6 +154,7 @@ function App() {
             )}
           </div>
         )}
+
         {step === 3 && (
           <div className="enigmes-zone">
             <h2>Énigme cachée</h2>
@@ -174,7 +170,7 @@ function App() {
                   borderRadius: "4px"
                 }}
               >
-                {showHidden ? "HIDDEN123" : "      "}
+                {showHidden ? "HIDDEN123" : "      "}
               </span>
               <br />
               (Astuce : essaye de tout sélectionner avec Ctrl+A)
@@ -184,6 +180,7 @@ function App() {
             </button>
           </div>
         )}
+
         {step === 4 && (
           <div className="enigmes-zone">
             <h2>Énigme image</h2>
@@ -215,6 +212,7 @@ function App() {
             )}
           </div>
         )}
+
         {step === 5 && (
           <div className="enigmes-zone">
             <h2>Énigme culturelle</h2>
@@ -244,6 +242,7 @@ function App() {
           </div>
         )}
       </main>
+
       <footer>
         <p>Bonne chance !</p>
       </footer>
