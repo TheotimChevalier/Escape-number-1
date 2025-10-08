@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Outlet } from "react-router-dom";
+import Logo from "../../components/LogoPage/Logo";
 import "../../styles/App.css";
 
 
@@ -100,24 +101,6 @@ function App() {
     <div className="escape-container">
       <header>
         <h1>Escape Game</h1>
-        <p className="subtitle">
-          Pour commencer la première étape,{" "}
-          <span
-            className="fake-link"
-            onClick={() => goToStep(1)}
-            style={{ color: "#ff3b3b", cursor: "pointer", fontWeight: "bold" }}
-          >
-            cliquer ici
-          </span>
-          .
-        </p>
-        <button
-          className="red-btn"
-          onClick={() => goToStep(1)}
-          style={{ marginTop: 10 }}
-        >
-          Bouton rouge
-        </button>
       </header>
       <div className="chrono-section">
         <div className={`chrono ${seconds >= MAX_SECONDS ? "chrono-finished" : ""}`}>
@@ -140,6 +123,30 @@ function App() {
           </div>
         )}
       
+        {step === 1 && (
+  <>
+    <Logo onLogoClick={(alt) => alert(`Tu as cliqué sur ${alt} ! 👻`)} />
+
+    <div className="enigmes-zone">
+      <h2>Énigme 1 : Clique sur l'emoji</h2>
+      <p>
+        Pour avancer, il faut cliquer sur la clé&nbsp;
+        <span
+          style={{ fontSize: "2em", cursor: "pointer", marginLeft: 10 }}
+          onClick={() => goToStep(2)}
+          role="img"
+          aria-label="clé"
+        >
+          🔑
+        </span>
+      </p>
+      <p>(Indice : ce n’est pas un bouton, mais un emoji !)</p>
+    </div>
+  </>
+)}
+
+
+
         {step === 2 && (
           <div className="enigmes-zone">
             <h2>Mini-jeu Pac-Man</h2>
