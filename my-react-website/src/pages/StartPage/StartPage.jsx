@@ -4,6 +4,7 @@ import Logo from "../../components/LogoPage/Logo";
 import "../../styles/App.css";
 
 
+
 const MAX_SECONDS = 45 * 60; // 45 minutes
 
 function PacManGame({ onWin }) {
