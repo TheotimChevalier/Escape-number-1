@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "framer-motion": "^12.23.22",
     "pacman": "^0.15.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

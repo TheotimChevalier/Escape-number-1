@@ -1,0 +1,114 @@
+/* === CONTENEUR PLEIN ÉCRAN === */
+.creative-page {
+    position: fixed;
+    inset: 0;
+    /* top, right, bottom, left = 0 */
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    /* conteneur principal */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.6s ease, color 0.6s ease;
+    overflow: visible;
+    /* ← Corrigé : visible au lieu de hidden pour éviter le clipping des boutons */
+}
+
+/* === COULEURS DU THÈME === */
+.creative-page.light {
+    background-color: white;
+    color: black;
+}
+
+.creative-page.dark {
+    background-color: #0e0e0e;
+    color: white;
+}
+
+/* === BOUTON DARK MODE (🌙 / ☀️) === */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    background: none;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    color: inherit;
+    z-index: 99999;
+    /* ← Corrigé : augmenté pour être au-dessus de tout */
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    pointer-events: auto;
+    /* ← Ajouté : force les événements de clic */
+    min-width: 44px;
+    /* ← Ajouté : taille minimale pour mobile */
+    min-height: 44px;
+    display: flex;
+    /* ← Ajouté : pour centrer le SVG */
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    /* ← Ajouté : optimise les interactions tactiles */
+}
+
+.toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+/* === BOUTON FERMER ❌ === */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: inherit;
+    z-index: 99999;
+    /* ← Corrigé : augmenté pour être au-dessus de tout */
+    transition: transform 0.2s ease, color 0.3s ease;
+    pointer-events: auto;
+    /* ← Ajouté : force les événements de clic */
+    min-width: 44px;
+    /* ← Ajouté : taille minimale pour mobile */
+    min-height: 44px;
+    display: flex;
+    /* ← Ajouté : pour centrer le texte ✕ */
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    /* ← Ajouté : optimise les interactions tactiles */
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
+    color: crimson;
+}
+
+/* === CONTENU PRINCIPAL === */
+.content {
+    max-width: 600px;
+    padding: 20px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+    /* contenu derrière les boutons */
+}
+
+/* === TEXTE SECRET (visible uniquement en dark mode) === */
+.hidden-text {
+    color: transparent;
+    transition: color 0.6s ease;
+    user-select: none;
+}
+
+.hidden-text.show {
+    color: #66ffcc;
+}
