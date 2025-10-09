@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import "../../styles/App.css";
 
 // --- Icônes ---
-import pacman from "../Asset/pacman.jfif";
+import pacman from "../Asset/pacman.png";
 import ghostRed from "../Asset/ghost-red.svg";
 import ghostBlue from "../Asset/ghost-blue.svg";
 import ghostPink from "../Asset/ghost-pink.svg";
