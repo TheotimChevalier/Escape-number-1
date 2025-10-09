@@ -159,7 +159,51 @@ h2 {
     border-radius: 4px;
 }
 
-
+.code-input{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+}
+.code-input input{
+    padding:8px 12px;
+    border-radius:8px;
+    border:none;
+    outline:none;
+    font-size:1em;
+}
+.code-input button{
+    padding:8px 12px;
+    border-radius:8px;
+    border:none;
+    background:#ffb347;
+    color:#222;
+    font-weight:bold;
+    cursor:pointer;
+}
+.code-input button:disabled{
+    background:#666;
+    cursor:not-allowed;
+}
+.code-error{
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:30px;
+    background:#ff3b3b;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:10px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.5);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.35s ease, bottom 0.35s ease;
+}
+.code-error.show{
+    opacity:1;
+    bottom:48px;
+    pointer-events:auto;
+}
 
 
 

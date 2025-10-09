@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../components/LogoPage/Logo";
 import "../../styles/App.css";
 
@@ -14,7 +15,7 @@ function PacManGame({ onWin }) {
     if (score < 4) setScore(score + 1);
     if (score + 1 === 5) {
       setWon(true);
-      onWin();
+      onWin && onWin();
     }
   };
 
@@ -39,14 +40,16 @@ function PacManGame({ onWin }) {
   );
 }
 
-function App() {
+function StartPage() {
+  const navigate = useNavigate();
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);
   const [step, setStep] = useState(0);
   const [pacmanWon, setPacmanWon] = useState(false);
+  const [showHint, setShowHint] = useState(false); // révéler l'indice
   const intervalRef = useRef(null);
+  const [codeInput, setCodeInput] = useState("");
 
-  // Chrono
   const start = () => {
     if (!running && seconds < MAX_SECONDS) {
       setRunning(true);
@@ -62,20 +65,26 @@ function App() {
       }, 1000);
     }
   };
-  const stop = () => {
-    setRunning(false);
-    clearInterval(intervalRef.current);
-  };
-  const reset = () => {
-    stop();
-    setSeconds(0);
-  };
+
   const formatTime = (s) =>
     `${String(Math.floor((MAX_SECONDS - s) / 60)).padStart(2, "0")}:${String((MAX_SECONDS - s) % 60).padStart(2, "0")}`;
 
+  // Démarrer automatiquement au montage
+  useEffect(() => {
+    start();
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  // Rediriger vers la page de game over quand le temps est écoulé
+  useEffect(() => {
+    if (seconds >= MAX_SECONDS) {
+      navigate("/game-over");
+    }
+  }, [seconds, navigate]);
+
   // Contrôle A (code caché)
   const [showHidden, setShowHidden] = useState(false);
-  React.useEffect(() => {
+  useEffect(() => {
     const handler = (e) => {
       if (e.ctrlKey && e.key.toLowerCase() === "a") setShowHidden(true);
     };
@@ -83,38 +92,53 @@ function App() {
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
-  // Énigme image
-  const [imgAnswer, setImgAnswer] = useState("");
-  const [imgSolved, setImgSolved] = useState(false);
-
-  // Énigme date
-  const [dateAnswer, setDateAnswer] = useState("");
-  const [dateSolved, setDateSolved] = useState(false);
-
-  // Emoji
-  const [emojiSolved, setEmojiSolved] = useState(false);
-
-  // Navigation étapes
   const goToStep = (n) => setStep(n);
+
+  // Remplacer la validation automatique du code par une validation manuelle
+  const [showError, setShowError] = useState(false);
+  const handleValidateCode = () => {
+    if (codeInput === "1234") {
+      setCodeInput("");
+      navigate("/felicitation");
+    } else {
+      setShowError(true);
+      // masquer après 10 secondes
+      setTimeout(() => setShowError(false), 10000);
+    }
+  };
 
   return (
     <div className="escape-container">
       <header>
         <h1>Escape Game</h1>
       </header>
-      
+
       <div className="chrono-section">
         <div className={`chrono ${seconds >= MAX_SECONDS ? "chrono-finished" : ""}`}>
           {seconds < MAX_SECONDS ? formatTime(seconds) : "Temps écoulé !"}
         </div>
+
+        <div className="code-input">
+          <input
+            type="text"
+            placeholder="Entrez le code..."
+            value={codeInput}
+            onChange={(e) => setCodeInput(e.target.value)}
+            maxLength={10}
+          />
+          <button onClick={handleValidateCode} disabled={!codeInput}>Valider</button>
+          <div className={`code-error ${showError ? 'show' : ''}`}>Mauvais code — réessaie !</div>
+        </div>
+
         <div className="chrono-buttons">
-          <button onClick={start} disabled={running || seconds >= MAX_SECONDS}>Démarrer</button>
-          <button onClick={stop} disabled={!running}>Pause</button>
-          <button onClick={reset}>Réinitialiser</button>
+          {/* contrôles désactivés */}
+          <button disabled> Démarrer </button>
+          <button disabled> Pause </button>
+          <button disabled> Réinitialiser </button>
         </div>
       </div>
 
-      {/* ⬇️ Logo visible en PERMANENCE sur TOUTES les étapes */}
+      {/* logo */}
       <Logo onLogoClick={(alt) => alert(`Tu as cliqué sur ${alt} ! 👻`)} />
 
       <main>
@@ -122,29 +146,21 @@ function App() {
           <div className="enigmes-zone">
             <p>
               Bienvenue dans l'escape game !<br />
-              Pour commencer, trouve comment passer à la première étape...
+              Pour commencer, clique sur la clé pour révéler l'indice.
             </p>
-          </div>
-        )}
-
-        {step === 1 && (
-          <div className="enigmes-zone">
-            <h2>Énigme 1 : Clique sur l'emoji</h2>
             <p>
-              Pour avancer, il faut cliquer sur la clé&nbsp;
               <span
                 style={{ fontSize: "2em", cursor: "pointer", marginLeft: 10 }}
-                onClick={() => goToStep(2)}
+                onClick={() => setShowHint(true)}
                 role="img"
                 aria-label="clé"
               >
                 🔑
               </span>
             </p>
-            <p>(Indice : ce n'est pas un bouton, mais un emoji !)</p>
+            {showHint && <p className="indice">(Indice : ce n'est pas un bouton, mais un emoji !)</p>}
           </div>
         )}
-
       </main>
 
       <footer>
@@ -154,4 +170,4 @@ function App() {
   );
 }
 
-export default App;
+export default StartPage;
