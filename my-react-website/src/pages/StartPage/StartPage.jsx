@@ -129,13 +129,6 @@ function StartPage() {
           <button onClick={handleValidateCode} disabled={!codeInput}>Valider</button>
           <div className={`code-error ${showError ? 'show' : ''}`}>Mauvais code — réessaie !</div>
         </div>
-
-        <div className="chrono-buttons">
-          {/* contrôles désactivés */}
-          <button disabled> Démarrer </button>
-          <button disabled> Pause </button>
-          <button disabled> Réinitialiser </button>
-        </div>
       </div>
 
       {/* logo */}
