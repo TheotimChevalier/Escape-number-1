@@ -1,0 +1,14 @@
+.container-OrangeGhost {
+    display: flex;
+}
+
+.container-OrangeGhost p {
+    color: black;
+}
+
+
+.image-guess {
+    width:40vw; 
+    height: auto;
+}
+
