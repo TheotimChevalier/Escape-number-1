@@ -151,7 +151,7 @@ function StartPage() {
                 🔑
               </span>
             </p>
-            {showHint && <p className="indice">(Indice : ce n'est pas un bouton, mais un emoji !)</p>}
+            {showHint && <p className="indice">(Indice : cela a la meme couleur que la clée)</p>}
           </div>
         )}
       </main>
