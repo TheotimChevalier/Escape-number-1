@@ -107,9 +107,10 @@ function StartPage() {
   };
 
   return (
+    
     <div className="escape-container">
       <header>
-        <h1>Escape Game</h1>
+        <LogoImage/>
       </header>
 
       <div className="chrono-section">

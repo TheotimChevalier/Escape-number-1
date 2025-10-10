@@ -1,0 +1,51 @@
+.partenariat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.epsia-img {
+    width: 40vw;
+    max-width: 90vw;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.partenariat-container > button {
+    /* Taille raisonnable */
+    padding: 15px 50px;
+    font-size: 18px;
+    font-weight: bold;
+    
+    /* Style du bouton */
+    background-color:#00ffb3;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    
+    /* Premier plan avec z-index et ombre */
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 8px 20px rgba(0, 255, 229, 0.4);
+    
+    /* Transition pour animation */
+    transition: all 0.3s ease;
+}
+
+/* Changement au survol */
+.partenariat-container > button:hover {
+    background-color: #15ceaf;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(4, 234, 184, 0.6);
+}
+
+/* Effet au clic */
+.partenariat-container > button:active {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(10, 245, 178, 0.4);
+}
