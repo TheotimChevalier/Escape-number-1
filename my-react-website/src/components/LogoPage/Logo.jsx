@@ -41,7 +41,6 @@ import freezeEmoji from "../Asset/freeze-emoji.svg";
 import ghostEmoji from "../Asset/ghost-emoji.svg";
 import greenApple from "../Asset/green-apple.svg";
 import greenHeart from "../Asset/green-heart.svg";
-
 import heartSticker from "../Asset/heart-sticker.svg";
 import kiwi from "../Asset/kiwi.svg";
 import koFace from "../Asset/ko-face.svg";
@@ -49,7 +48,6 @@ import litchi from "../Asset/litchi.svg";
 import pinkLego from "../Asset/lego.svg";
 import moon from "../Asset/moon.svg";
 import marioKart from "../Asset/mario-kart.svg";
-
 import pinkNode from "../Asset/node.svg";
 import orangeCat from "../Asset/orange-cat.svg";
 import orangeMonkey from "../Asset/orange-monkey.svg";
@@ -70,14 +68,14 @@ import treasureChest from "../Asset/treasure-chest.svg";
 import watermelon from "../Asset/watermelon.svg";
 import water from "../Asset/water.svg";
 
-
 // --- Composants pour les mini-jeux / quiz ---
 import RedGhostQuiz from "../RedGhostQuiz/RedGhostQuiz";
 import BlueGhostPics from "../BlueGhostPics/BlueGhostPics";
 import PinkGhostDarckMode from "../PinkGhostDarckMode/PinkGhostDarckMode";
 import OrangeGhostRebut from "../OrangeGhostRebut/OrangeGhostRebut";
-import PacMan from "../PacMan/PacMan"; // ton mini-jeu Pac-Man
+import PacMan from "../PacMan/PacMan"; // mini-jeu Pac-Man
 
+// --- Liste des icônes ---
 const baseLogos = [
   { src: pacman, alt: "pacman", clickable: true, type: "pacman" },
   { src: ghostRed, alt: "fantome rouge", clickable: true, type: "red" },
@@ -94,81 +92,59 @@ const baseLogos = [
   { src: diamond, alt: "diamant bleu", clickable: false },
   { src: mushroom, alt: "champignon", clickable: false },
   { src: lightning, alt: "eclair bleu", clickable: false },
-  { src: angry, alt: "smiley en colère ", clickable: false },
+  { src: angry, alt: "smiley en colère", clickable: false },
   { src: avocado, alt: "avocat", clickable: false },
   { src: blueHeart, alt: "coeur bleu", clickable: false },
-  { src: bulbBlue, alt: "ampoule à la lumière bleu", clickable: false },
-  { src: blueMonkey, alt: "emoji singe bleu qui cache sa bouche", clickable: false },
-  { src: blueUnicorn, alt: "émoji licorne avec crinière bleue ", clickable: false },
-  { src: carrot, alt: "carotte ", clickable: false },
-  { src: greenCheck, alt: "coche verte ", clickable: false },
+  { src: bulbBlue, alt: "ampoule bleue", clickable: false },
+  { src: blueMonkey, alt: "singe bleu", clickable: false },
+  { src: blueUnicorn, alt: "licorne bleue", clickable: false },
+  { src: carrot, alt: "carotte", clickable: false },
+  { src: greenCheck, alt: "coche verte", clickable: false },
   { src: cloud, alt: "nuage", clickable: false },
-  { src: redDevil, alt: "emoji tête de diable rouge", clickable: false },
-  { src: eyes, alt: "emoji deux yeux", clickable: false },
-  { src: freezeEmoji, alt: "emoji bleu gelé", clickable: false },
-  { src: ghostEmoji, alt: "emoji fantome blanc", clickable: false },
+  { src: redDevil, alt: "diable rouge", clickable: false },
+  { src: eyes, alt: "yeux", clickable: false },
+  { src: freezeEmoji, alt: "emoji gelé", clickable: false },
+  { src: ghostEmoji, alt: "emoji fantome", clickable: false },
   { src: greenApple, alt: "pomme verte", clickable: false },
-  { src: heartSticker, alt: " coeur sticker rose", clickable: false },
+  { src: heartSticker, alt: "coeur sticker", clickable: false },
   { src: kiwi, alt: "kiwi", clickable: false },
-  { src: pinkLego, alt: "lego", clickable: false },
-  { src: moon, alt: "lune bleue ", clickable: false },
+  { src: pinkLego, alt: "lego rose", clickable: false },
+  { src: moon, alt: "lune", clickable: false },
   { src: pinkNode, alt: "noeud rose", clickable: false },
-  { src: orangeCat, alt: "chat roux", clickable: false },
+  { src: orangeCat, alt: "chat orange", clickable: false },
   { src: orangeHeart, alt: "coeur orange", clickable: false },
-  { src: peach, alt: "le fruit pêche", clickable: false },
-  { src: pear, alt: "le fruit, la poire ", clickable: false },
-  { src: pinkHeart, alt: "Coeur rose ", clickable: false },
+  { src: peach, alt: "pêche", clickable: false },
+  { src: pear, alt: "poire", clickable: false },
+  { src: pinkHeart, alt: "coeur rose", clickable: false },
   { src: pinkRabbit, alt: "lapin rose", clickable: false },
-  { src: playGreen, alt: "icone play verte", clickable: false },
-  { src: rainy, alt: "nuage avec de la pluie qui tombe", clickable: false },
-  { src: redThumb, alt: "icone pouce rouge vers le bas", clickable: false },
-  { src: surpriseBox, alt: "une boxe surpise verte avec un point d'interrogation", clickable: false },
+  { src: playGreen, alt: "bouton play", clickable: false },
+  { src: rainy, alt: "pluie", clickable: false },
+  { src: redThumb, alt: "pouce rouge", clickable: false },
+  { src: surpriseBox, alt: "boîte surprise", clickable: false },
   { src: tomato, alt: "tomate", clickable: false },
-  { src: treasureChest, alt: "coffre aux trésors ouvert et vide bleu", clickable: false },
-  { src: watermelon, alt: "pastèque ouverte", clickable: false },
-  { src: greenGrapes, alt: "grappe de raisin verte", clickable: false },
-  { src: marioKart, alt: "Kart rouge de Mario", clickable: false },
-  { src: pinkFire, alt: "Feu rose", clickable: false },
-  { src: blueFlower, alt: "Fleur bleu", clickable: false },
-  { src: orangeMonkey, alt: "singe avec les yeux cachés orange", clickable: false },
-  { src: water, alt: "gouttes d'eau", clickable: false },
-  { src: storm, alt: "emoji orage", clickable: false },
+  { src: treasureChest, alt: "coffre au trésor", clickable: false },
+  { src: watermelon, alt: "pastèque", clickable: false },
+  { src: greenGrapes, alt: "raisins verts", clickable: false },
+  { src: marioKart, alt: "kart", clickable: false },
+  { src: pinkFire, alt: "feu rose", clickable: false },
+  { src: blueFlower, alt: "fleur bleue", clickable: false },
+  { src: orangeMonkey, alt: "singe orange", clickable: false },
+  { src: water, alt: "eau", clickable: false },
+  { src: storm, alt: "orage", clickable: false },
   { src: greenHeart, alt: "coeur vert", clickable: false },
   { src: litchi, alt: "litchi", clickable: false },
-  { src: blueRowRight, alt: "flèche bleu vers la droite", clickable: false },
-  { src: books, alt: "pile de livres", clickable: false },
+  { src: blueRowRight, alt: "flèche droite", clickable: false },
+  { src: books, alt: "livres", clickable: false },
   { src: greenThumb, alt: "pouce vert", clickable: false },
   { src: pokeball, alt: "pokeball", clickable: false },
-  { src: pinkFace, alt: "emoji tête rose", clickable: false },
+  { src: pinkFace, alt: "visage rose", clickable: false },
   { src: blueStar, alt: "étoile bleue", clickable: false },
-  { src: blueLike, alt: "icone like bleue", clickable: false },
-  { src: koFace, alt: "émoji tête épuisée", clickable: false },
-  { src: pinkHeart, alt: "coeur rose", clickable: false },
-  { src: purpleUnicorn, alt: "licorne àa la crinière violette", clickable: false },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
+  { src: blueLike, alt: "like bleu", clickable: false },
+  { src: koFace, alt: "tête KO", clickable: false },
+  { src: purpleUnicorn, alt: "licorne violette", clickable: false },
 ];
 
+// --- Fonction de vérification de chevauchement ---
 function isOverlapping(a, b) {
   return !(
     a.left + a.size < b.left ||
@@ -184,9 +160,7 @@ export default function Logo() {
 
   useEffect(() => {
     const container = document.querySelector(".escape-container");
-    if (container) {
-      setEscapeRect(container.getBoundingClientRect());
-    }
+    if (container) setEscapeRect(container.getBoundingClientRect());
   }, []);
 
   const randomized = useMemo(() => {
@@ -197,44 +171,25 @@ export default function Logo() {
     const placed = [];
 
     for (const logo of baseLogos) {
-      let positionValid = false;
-      let attempt = 0;
-      let top = 0;
-      let left = 0;
+      let top = 0, left = 0;
       const size = Math.random() * 25 + 35;
+      let positionValid = false, attempt = 0;
 
       while (!positionValid && attempt < 200) {
         attempt++;
-        const zone = Math.floor(Math.random() * 4); // 0=haut,1=bas,2=gauche,3=droite
-
+        const zone = Math.floor(Math.random() * 4);
         switch (zone) {
-          case 0: // haut
-            top = Math.random() * (escapeRect.top - size);
-            left = Math.random() * winWidth;
-            break;
-          case 1: // bas
-            top = escapeRect.bottom + Math.random() * (winHeight - escapeRect.bottom - size);
-            left = Math.random() * winWidth;
-            break;
-          case 2: // gauche
-            top = Math.random() * winHeight;
-            left = Math.random() * (escapeRect.left - size);
-            break;
-          case 3: // droite
-            top = Math.random() * winHeight;
-            left = escapeRect.right + Math.random() * (winWidth - escapeRect.right - size);
-            break;
-          default:
-            break;
+          case 0: top = Math.random() * (escapeRect.top - size); left = Math.random() * winWidth; break;
+          case 1: top = escapeRect.bottom + Math.random() * (winHeight - escapeRect.bottom - size); left = Math.random() * winWidth; break;
+          case 2: top = Math.random() * winHeight; left = Math.random() * (escapeRect.left - size); break;
+          case 3: top = Math.random() * winHeight; left = escapeRect.right + Math.random() * (winWidth - escapeRect.right - size); break;
+          default: break;
         }
 
-        // Correction pour rester dans les bords visibles
         top = Math.max(0, Math.min(winHeight - size, top));
         left = Math.max(0, Math.min(winWidth - size, left));
 
         const current = { top, left, size };
-
-        // Vérifie qu’il ne chevauche pas un logo déjà placé
         positionValid = !placed.some((p) => isOverlapping(p, current));
         if (positionValid) placed.push(current);
       }
@@ -247,27 +202,16 @@ export default function Logo() {
       size: `${pos.size}px`,
       rotation: `${Math.random() * 360}deg`,
     }));
-  }, [escapeRect])
+  }, [escapeRect]);
 
   const handleClick = (logo) => {
     switch (logo.type) {
-      case "red":
-        setActiveComponent("red");
-        break;
-      case "blue":
-        setActiveComponent("blue");
-        break;
-      case "pink":
-        setActiveComponent("pink");
-        break;
-      case "orange":
-        setActiveComponent("orange");
-        break;
-      case "pacman":
-        setActiveComponent("pacman");
-        break;
-      default:
-        alert(`Tu as cliqué sur ${logo.alt} ! 👻`);
+      case "red": setActiveComponent("red"); break;
+      case "blue": setActiveComponent("blue"); break;
+      case "pink": setActiveComponent("pink"); break;
+      case "orange": setActiveComponent("orange"); break;
+      case "pacman": setActiveComponent("pacman"); break;
+      default: alert(`Tu as cliqué sur ${logo.alt} ! 👻`);
     }
   };
 
@@ -280,12 +224,13 @@ export default function Logo() {
           key={i}
           src={logo.src}
           alt={logo.alt}
-          className={`logo ${logo.clickable ? "clickable" : ""}`}
+          className="logo"
           style={{
             top: logo.top,
             left: logo.left,
             width: logo.size,
             transform: `rotate(${logo.rotation})`,
+            cursor: "default", // empêche la main
           }}
           onClick={() => logo.clickable && handleClick(logo)}
         />

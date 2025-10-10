@@ -97,8 +97,8 @@ function StartPage() {
   // Remplacer la validation automatique du code par une validation manuelle
   const [showError, setShowError] = useState(false);
   const handleValidateCode = () => {
-    if (codeInput === "1234") {
-      setCodeInput("");
+    if (codeInput === "") {
+      setCodeInput("pacmiom-pikaboieriviere-Quizarcad-Pics352-pinkydark");
       navigate("/felicitation");
     } else {
       setShowError(true);

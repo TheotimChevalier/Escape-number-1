@@ -78,7 +78,7 @@ export default function PinkGhostDarckMode({ onClose }) {  // 👈 Ajoute la pro
 
         {/* 🔒 Texte secret — visible uniquement en dark mode */}
         <p className={`hidden-text ${darkMode ? "show" : ""}`}>
-          💡 Mot de passe secret : imagine2025
+          💡 Mot de passe secret : pinkydark
         </p>
 
         <p>

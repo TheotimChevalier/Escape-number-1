@@ -123,7 +123,7 @@ function OrangeGhostRebut({ onClose }) {
                 </div>
               </form>
 
-              {isRebusCorrect && <p className="success-message">🎉 Bravo ! Tu as trouvé toutes les bonnes réponses !</p>}
+              {isRebusCorrect && <p className="success-message">🎉 Bravo ! Tu as trouvé toutes les bonnes réponses ! le code du fantome orange est : Pikaboieriviere </p>}
             </>
           )}
         </div>

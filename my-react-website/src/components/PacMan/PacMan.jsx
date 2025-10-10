@@ -29,7 +29,7 @@ export default function PacMan({ onClose }) {
     setShowModal({
       visible: true,
       title: "Bravo ! 🎉",
-      message: `Félicitations ! Vous avez gagné !\n\n👥 Mes coéquipiers fantomes peuvent vous aider pour la suite 😉.`,
+      message: `Félicitations ! Vous avez gagné ! L'une des partie du code est : pacmiom \n\n👥 Mes coéquipiers fantomes peuvent vous aider pour la suite 😉.`,
     });
   };
 

@@ -21,3 +21,18 @@
     transform: scale(1.2);
     opacity: 1;
 }
+
+.logo {
+    position: absolute;
+    opacity: 0.85;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    cursor: default;
+    /* <-- Force le curseur "normal" */
+}
+
+.logo.clickable:hover {
+    transform: scale(1.2);
+    opacity: 1;
+    cursor: default;
+    /* <-- Empêche le curseur "pointer" sur hover */
+}

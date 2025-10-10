@@ -93,7 +93,7 @@ export default function RedGhostQuiz({ onClose }) {
             <>
               <h2>✅ Bravo !</h2>
               <p>Tu as répondu correctement à {score}/{questions.length} questions.</p>
-              <p>Tu as débloqué le bonus du fantôme rouge ! 🎉</p>
+              <p>Une partie du code est : Quizarcad </p>
               <button onClick={onClose}>Fermer</button>
             </>
           ) : (
