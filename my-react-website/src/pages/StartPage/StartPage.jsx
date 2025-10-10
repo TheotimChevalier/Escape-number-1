@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../components/LogoPage/Logo";
 import "../../styles/App.css";
 
-
-
 const MAX_SECONDS = 45 * 60; // 45 minutes
 
 function PacManGame({ onWin }) {
@@ -35,7 +33,11 @@ function PacManGame({ onWin }) {
         <span className="pacman">😋</span>
       </div>
       <p>Avance Pac-Man en cliquant sur les points !</p>
-      {won && <div className="reward">Bravo, tu as gagné une clé : <b>PACKEY</b></div>}
+      {won && (
+        <div className="reward">
+          Bravo, tu as gagné une clé : <b>PACKEY</b>
+        </div>
+      )}
     </div>
   );
 }
@@ -45,8 +47,7 @@ function StartPage() {
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);
   const [step, setStep] = useState(0);
-  const [pacmanWon, setPacmanWon] = useState(false);
-  const [showHint, setShowHint] = useState(false); // révéler l'indice
+  const [showHint, setShowHint] = useState(false);
   const intervalRef = useRef(null);
   const [codeInput, setCodeInput] = useState("");
 
@@ -67,22 +68,22 @@ function StartPage() {
   };
 
   const formatTime = (s) =>
-    `${String(Math.floor((MAX_SECONDS - s) / 60)).padStart(2, "0")}:${String((MAX_SECONDS - s) % 60).padStart(2, "0")}`;
+    `${String(Math.floor((MAX_SECONDS - s) / 60)).padStart(2, "0")}:${String(
+      (MAX_SECONDS - s) % 60
+    ).padStart(2, "0")}`;
 
-  // Démarrer automatiquement au montage
   useEffect(() => {
     start();
     return () => clearInterval(intervalRef.current);
   }, []);
 
-  // Rediriger vers la page de game over quand le temps est écoulé
   useEffect(() => {
     if (seconds >= MAX_SECONDS) {
       navigate("/game-over");
     }
   }, [seconds, navigate]);
 
-  // Contrôle A (code caché)
+  // Code secret
   const [showHidden, setShowHidden] = useState(false);
   useEffect(() => {
     const handler = (e) => {
@@ -92,17 +93,15 @@ function StartPage() {
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
-  const goToStep = (n) => setStep(n);
-
-  // Remplacer la validation automatique du code par une validation manuelle
+  // Validation du code
   const [showError, setShowError] = useState(false);
   const handleValidateCode = () => {
-    if (codeInput === "") {
-      setCodeInput("pacmiom-pikaboieriviere-Quizarcad-Pics352-pinkydark");
+    const correctCode = "pacmiom-pikaboieriviere-Quizarcad-Pics352-pinkydark";
+
+    if (codeInput.trim() === correctCode) {
       navigate("/felicitation");
     } else {
       setShowError(true);
-      // masquer après 10 secondes
       setTimeout(() => setShowError(false), 10000);
     }
   };
@@ -114,7 +113,11 @@ function StartPage() {
       </header>
 
       <div className="chrono-section">
-        <div className={`chrono ${seconds >= MAX_SECONDS ? "chrono-finished" : ""}`}>
+        <div
+          className={`chrono ${
+            seconds >= MAX_SECONDS ? "chrono-finished" : ""
+          }`}
+        >
           {seconds < MAX_SECONDS ? formatTime(seconds) : "Temps écoulé !"}
         </div>
 
@@ -124,14 +127,18 @@ function StartPage() {
             placeholder="Entrez le code..."
             value={codeInput}
             onChange={(e) => setCodeInput(e.target.value)}
-            maxLength={10}
+            /* pas de limite de caractères */
           />
-          <button onClick={handleValidateCode} disabled={!codeInput}>Valider</button>
-          <div className={`code-error ${showError ? 'show' : ''}`}>Mauvais code — réessaie !</div>
+          <button onClick={handleValidateCode} disabled={!codeInput}>
+            Valider
+          </button>
+          <div className={`code-error ${showError ? "show" : ""}`}>
+            Mauvais code — réessaie !
+          </div>
         </div>
       </div>
 
-      {/* logo */}
+      {/* Logo */}
       <Logo onLogoClick={(alt) => alert(`Tu as cliqué sur ${alt} ! 👻`)} />
 
       <main>
@@ -151,7 +158,11 @@ function StartPage() {
                 🔑
               </span>
             </p>
-            {showHint && <p className="indice">(Indice : cela a la meme couleur que la clée)</p>}
+            {showHint && (
+              <p className="indice">
+                (Indice : cela a la même couleur que la clé)
+              </p>
+            )}
           </div>
         )}
       </main>

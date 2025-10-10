@@ -21,7 +21,7 @@ function BlueGhostPics({ onClose }) {
       return;
     }
     if (code.trim() === secretCode) {
-      setMessage("✅ Code correct !");
+      setMessage("✅ Code correct ! Vous obtenez une partie du code final : Pics352 ");
     } else {
       setMessage("❌ Code incorrect !");
       setCode("");
