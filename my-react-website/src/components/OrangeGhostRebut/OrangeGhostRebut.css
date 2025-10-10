@@ -1,14 +1,166 @@
-.container-OrangeGhost {
+/* === Fond semi-transparent === */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow-y: auto;
+    /* scroll si nécessaire */
+    padding: 20px;
+    /* espace autour pour scroll */
 }
 
-.container-OrangeGhost p {
+/* === Fenêtre du jeu === */
+.game-container {
+    position: relative;
+    background-color: white;
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    /* limite hauteur pour scroll */
     color: black;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    /* scroll interne si nécessaire */
 }
 
+/* Bouton fermer */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+}
 
+.close-button:hover {
+    color: red;
+}
+
+/* === Image principale === */
 .image-guess {
-    width:40vw; 
+    width: 350px;
+    /* plus grosse */
+    max-width: 90%;
     height: auto;
+    border-radius: 15px;
+    margin: 20px 0;
 }
 
+/* === Texte === */
+.instruction-text {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+/* === Inputs et boutons === */
+.date-input,
+.rebus-input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 240px;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.validate-button {
+    display: block;
+    margin: 10px auto;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: orange;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.validate-button:hover {
+    background-color: darkorange;
+}
+
+/* === Rébus stacked vertical === */
+.rebus-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+/* === Rébus items === */
+.rebus-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* === Images rébus === */
+.rebus-image {
+    width: 180px;
+    /* plus grosse */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+.multi-image {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.rebus-image-small {
+    width: 80px;
+    /* plus grosses aussi */
+    height: auto;
+    border-radius: 8px;
+}
+
+/* === Message succès === */
+.success-message {
+    margin-top: 20px;
+    font-weight: bold;
+    color: green;
+    font-size: 1.4rem;
+}
+
+/* === Images rébus === */
+.rebus-image {
+    width: 360px;
+    /* 200% de 180px */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.multi-image {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.rebus-image-small {
+    width: 160px;
+    /* 200% de 80px */
+    height: auto;
+    border-radius: 8px;
+}

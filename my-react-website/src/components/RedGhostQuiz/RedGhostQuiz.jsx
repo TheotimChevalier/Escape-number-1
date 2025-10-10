@@ -85,6 +85,9 @@ export default function RedGhostQuiz({ onClose }) {
   return (
     <div style={styles.overlay}>
       <div style={styles.container}>
+        {/* Crois pour fermer le composant */}
+        <button style={styles.closeButton} onClick={onClose}>✖</button>
+
         {submitted ? (
           passed ? (
             <>
@@ -149,6 +152,7 @@ const styles = {
     pointerEvents: "auto",
   },
   container: {
+    position: "relative", // nécessaire pour positionner la croix
     pointerEvents: "auto",
     background: "#fff",
     color: "black",
@@ -161,6 +165,16 @@ const styles = {
     overflowY: "auto",
     boxShadow: "0 0 25px rgba(0,0,0,0.6)",
     textAlign: "center",
+  },
+  closeButton: {
+    position: "absolute",
+    top: "10px",
+    right: "10px",
+    background: "transparent",
+    border: "none",
+    fontSize: "1.5rem",
+    cursor: "pointer",
+    color: "red",
   },
   option: {
     display: "block",
