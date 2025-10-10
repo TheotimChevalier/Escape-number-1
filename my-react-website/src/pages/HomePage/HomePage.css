@@ -1,8 +1,21 @@
-
+.container-center {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
 .container_home{
     display: row;
     text-align: center;
+    justify-content: center;
+    width:70vw;
+    height :84vh;
+    background:rgba(30, 30, 30, 0.97);
+    border-radius: 1rem;
+    color: white;
+    padding: 3rem;
 }
+
+
 
 .red_button {
     cursor: pointer;
@@ -15,11 +28,13 @@
     text-align: center;
     font-size: 5rem;
     border: none;
+    margin:5rem;
+
 
 }
 
 .non-underline {
-    color:black;
+    color:white;
     cursor: pointer;
     text-decoration: none;
         
@@ -27,7 +42,7 @@
 
 a.non-underline {
     text-decoration: none;
-    color: black;
+    color: white;
         
 }
 

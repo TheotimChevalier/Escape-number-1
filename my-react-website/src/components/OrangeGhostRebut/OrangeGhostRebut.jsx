@@ -18,7 +18,7 @@ function OrangeGhostRebut({ onClose }) {
   const [isRebusCorrect, setIsRebusCorrect] = useState(false);
 
   const correctDate = "14/07/1789";
-  const correctAnswers = ["pikachu", "boie dans la", "riviere", "pikachu boie dans la riviere"];
+  const correctAnswers = ["pikatchu", "boit dans la", "riviere", "pikatchu boit dans la riviere"];
 
   const handleDateSubmit = (e) => {
     e.preventDefault();
@@ -112,13 +112,13 @@ function OrangeGhostRebut({ onClose }) {
                   </div>
                   <input
                     type="text"
-                    placeholder="Mot 4"
+                    placeholder="Phrase secrète"
                     value={answers[3]}
                     onChange={(e) => handleChange(3, e.target.value)}
                     className="rebus-input"
                   />
                   <button type="submit" className="validate-button">
-                    Valider Mot 4
+                    Valider la phrase secrète
                   </button>
                 </div>
               </form>
