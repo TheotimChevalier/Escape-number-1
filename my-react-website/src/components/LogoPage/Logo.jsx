@@ -295,7 +295,7 @@ export default function Logo() {
       {activeComponent === "blue" && <BlueGhostPics onClose={closeComponent} />}
       {activeComponent === "pink" && <PinkGhostDarckMode onClose={closeComponent} />}
       {activeComponent === "orange" && <OrangeGhostRebut onClose={closeComponent} />}
-      {activeComponent === "pacman" && <PacMan oonClose={closeComponent} />}
+      {activeComponent === "pacman" && <PacMan onClose={closeComponent} />}
     </div>
   );
 }

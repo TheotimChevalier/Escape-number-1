@@ -129,13 +129,6 @@ function StartPage() {
           <button onClick={handleValidateCode} disabled={!codeInput}>Valider</button>
           <div className={`code-error ${showError ? 'show' : ''}`}>Mauvais code — réessaie !</div>
         </div>
-
-        <div className="chrono-buttons">
-          {/* contrôles désactivés */}
-          <button disabled> Démarrer </button>
-          <button disabled> Pause </button>
-          <button disabled> Réinitialiser </button>
-        </div>
       </div>
 
       {/* logo */}
@@ -158,7 +151,7 @@ function StartPage() {
                 🔑
               </span>
             </p>
-            {showHint && <p className="indice">(Indice : ce n'est pas un bouton, mais un emoji !)</p>}
+            {showHint && <p className="indice">(Indice : cela a la meme couleur que la clée)</p>}
           </div>
         )}
       </main>
