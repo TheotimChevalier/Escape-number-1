@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../components/LogoPage/Logo";
 import "../../styles/App.css";
+import LogoImage from "../../components/LogoImage/LogoImage";
 
 const MAX_SECONDS = 45 * 60; // 45 minutes
 
