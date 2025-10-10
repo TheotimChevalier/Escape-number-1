@@ -9,6 +9,7 @@ import Img3 from "../Asset/rivipng.png";
 import Img4a from "../Asset/pikapng.png";
 import Img4b from "../Asset/boiepng.png";
 import Img4c from "../Asset/rivipng.png";
+import Img5 from "../Asset/ordre.png";
 
 function OrangeGhostRebut({ onClose }) {
   const [dateInput, setDateInput] = useState("");
@@ -122,7 +123,8 @@ function OrangeGhostRebut({ onClose }) {
                   </button>
                 </div>
               </form>
-
+                <p>ordre mots de passe final</p>
+                <img src={Img5} alt="ordre" className="ordre" />
               {isRebusCorrect && <p className="success-message">🎉 Bravo ! Tu as trouvé toutes les bonnes réponses ! le code du fantome orange est : Pikaboieriviere </p>}
             </>
           )}
