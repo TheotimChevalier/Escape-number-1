@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage/HomePage';
 import StartPage from "./pages/StartPage/StartPage";
 import GameOver from './pages/GameOver/GameOver';
 import Felicitation from './pages/Felicitation/Felicitation';
+import EpsiaGamePage from './pages/EpsiaGamePage/EpsiaGamePage';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/felicitation',
         element: <Felicitation />,
+      },
+      {
+        path: '/epsia-game',
+        element: <EpsiaGamePage />,
       },
     ],
   },

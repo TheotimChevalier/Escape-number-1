@@ -1,0 +1,12 @@
+.escape-container{
+    display: flex; 
+    flex-direction: row;
+    text-align: center;  
+}
+
+.felicitation-screen{
+    display: flex; 
+    flex-direction: row;
+    text-align: center;  
+}
+
