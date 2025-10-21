@@ -19,7 +19,7 @@ function OrangeGhostRebut({ onClose }) {
   const [isRebusCorrect, setIsRebusCorrect] = useState(false);
 
   const correctDate = "14/07/1789";
-  const correctAnswers = ["pikatchu", "boit dans la", "riviere", "pikatchu boit dans la riviere"];
+  const correctAnswers = ["pikachu", "boit dans la", "riviere", "pikachu boit dans la riviere"];
 
   const handleDateSubmit = (e) => {
     e.preventDefault();

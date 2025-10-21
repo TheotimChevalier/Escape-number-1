@@ -97,7 +97,7 @@ function StartPage() {
   // Validation du code
   const [showError, setShowError] = useState(false);
   const handleValidateCode = () => {
-    const correctCode = "pacmiom-pikaboieriviere-Quizarcad-Pics352-pinkydark";
+    const correctCode = "pacmiom-pikaboitriviere-Quizarcad-Pics352-pinkydark";
 
     if (codeInput.trim() === correctCode) {
       navigate("/felicitation");
