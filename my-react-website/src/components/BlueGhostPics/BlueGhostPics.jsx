@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import KeyImage from "../Asset/Le-Code-Est-1234.webp";
 import "./BlueGhostPics.css";
 
@@ -13,6 +13,24 @@ function BlueGhostPics({ onClose }) {
   const secretCode = getSecretCode();
   const [code, setCode] = useState("");
   const [message, setMessage] = useState("");
+  const [showDelayedButton, setShowDelayedButton] = useState(false);
+  const [showExtraContent, setShowExtraContent] = useState(false);
+
+  // Affiche le bouton après 3 minutes (180000 ms)
+  useEffect(() => {
+    const timer = setTimeout(() => setShowDelayedButton(true), 180000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleHintClick = () => {
+    setShowExtraContent((prev) => !prev);
+  };
+
+  const handleExtraSubmit = (e) => {
+    e.preventDefault();
+    // Action personnalisable (placeholder). Ici on masque à nouveau le contenu.
+    setShowExtraContent(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,11 +83,34 @@ function BlueGhostPics({ onClose }) {
               className="code-input"
               autoFocus
             />
-
-            <button type="submit" className="submit-button">
-              Valider
-            </button>
-
+            <div className="button-row">
+              <button type="submit" className="submit-button">
+                Valider
+              </button>
+              {showDelayedButton && (
+                <button
+                  type="button"
+                  className="hint-button"
+                  onClick={handleHintClick}
+                >
+                  Indice
+                </button>
+              )}
+            </div>
+            {showExtraContent && (
+              <div className="extra-content">
+                <p className="extra-text">
+                  Voici un indice: Regarde bien le nom de l'image, il contient ce que tu cherches. (un inspection ou telechargement de l'image peut aider)
+                </p>
+                <button
+                  type="button"
+                  onClick={handleExtraSubmit}
+                  className="submit-button secondary-submit"
+                >
+                  Fermer l'indice
+                </button>
+              </div>
+            )}
             {message && <p className="message">{message}</p>}
           </div>
         </form>

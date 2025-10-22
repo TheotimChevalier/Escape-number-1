@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./OrangeGhostRebut.css";
 
 // 🖼️ Import des images
@@ -17,9 +17,24 @@ function OrangeGhostRebut({ onClose }) {
   const [answers, setAnswers] = useState(["", "", "", ""]);
   const [validated, setValidated] = useState([false, false, false]); // validation des 3 premiers mots
   const [isRebusCorrect, setIsRebusCorrect] = useState(false);
+  const [showDelayedButton, setShowDelayedButton] = useState(false);
+  const [showExtraContent, setShowExtraContent] = useState(false);
 
   const correctDate = "14/07/1789";
   const correctAnswers = ["pikachu", "boit dans la", "riviere", "pikachu boit dans la riviere"];
+
+  // Timer d'apparition du bouton indice (3 minutes)
+  useEffect(() => {
+    const timer = setTimeout(() => setShowDelayedButton(true), 180000);
+    return () => clearTimeout(timer);
+  }, []);
+  const handleHintClick = () => {
+    setShowExtraContent((prev) => !prev);
+  };
+
+  const handleExtraClose = () => {
+    setShowExtraContent(false);
+  };
 
   const handleDateSubmit = (e) => {
     e.preventDefault();
@@ -71,7 +86,18 @@ function OrangeGhostRebut({ onClose }) {
                 onChange={(e) => setDateInput(e.target.value)}
                 className="date-input"
               />
-              <button type="submit" className="validate-button">Valider</button>
+              <div className="button-row">
+                <button type="submit" className="validate-button">Valider</button>
+                {showDelayedButton && (
+                  <button
+                    type="button"
+                    className="hint-button"
+                    onClick={handleHintClick}
+                  >
+                    Indice
+                  </button>
+                )}
+              </div>
             </form>
           ) : (
             <>
@@ -118,15 +144,34 @@ function OrangeGhostRebut({ onClose }) {
                     onChange={(e) => handleChange(3, e.target.value)}
                     className="rebus-input"
                   />
-                  <button type="submit" className="validate-button">
-                    Valider la phrase secrète
-                  </button>
+                  <div className="button-row">
+                    <button type="submit" className="validate-button">
+                      Valider la phrase secrète
+                    </button>
+                    {showDelayedButton && (
+                      <button
+                        type="button"
+                        className="hint-button"
+                        onClick={handleHintClick}
+                      >
+                        Indice
+                      </button>
+                    )}
+                  </div>
                 </div>
               </form>
                 <p>ordre mots de passe final</p>
                 <img src={Img5} alt="ordre" className="ordre" />
               {isRebusCorrect && <p className="success-message">🎉 Bravo ! Tu as trouvé toutes les bonnes réponses ! le code du fantome orange est : Pikaboieriviere </p>}
             </>
+          )}
+          {showExtraContent && (
+            <div className="extra-content">
+              <p className="extra-text">
+                Indice: cette image represente un element de notre histoire a quelle date a-t-il eu lieu ?
+              </p>
+              <button type="button" onClick={handleExtraClose} className="validate-button secondary-close">Fermer l'indice</button>
+            </div>
           )}
         </div>
       </div>

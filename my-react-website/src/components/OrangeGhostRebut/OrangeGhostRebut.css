@@ -168,3 +168,66 @@
 .ordre{
 width: 300px;
 }
+
+/* === Rangée de boutons (validation + indice) === */
+.button-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+/* === Bouton indice (style différent) === */
+.hint-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: #6c757d; /* gris neutre */
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.15s;
+}
+
+.hint-button:hover {
+    background-color: #5a6268;
+}
+
+.hint-button:active {
+    transform: scale(0.96);
+}
+
+/* === Zone de l'indice === */
+.extra-content {
+    margin: 18px auto 0 auto;
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border: 1px solid #e2e3e5;
+    border-radius: 12px;
+    max-width: 560px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    animation: fadeIn 0.4s ease;
+}
+
+.extra-text {
+    margin: 0 0 14px 0;
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.4;
+}
+
+.secondary-close {
+    background-color: #17a2b8;
+}
+
+.secondary-close:hover {
+    background-color: #138496;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
