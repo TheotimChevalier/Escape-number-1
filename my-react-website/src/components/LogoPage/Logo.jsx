@@ -104,7 +104,7 @@ const baseLogos = [
   { src: redDevil, alt: "diable rouge", clickable: false },
   { src: eyes, alt: "yeux", clickable: false },
   { src: freezeEmoji, alt: "emoji gelé", clickable: false },
-  { src: ghostEmoji, alt: "emoji fantome", clickable: false },
+  { src: ghostEmoji, alt: "emoji fantome", clickable: true, type:"ghost-emoji" },
   { src: greenApple, alt: "pomme verte", clickable: false },
   { src: heartSticker, alt: "coeur sticker", clickable: false },
   { src: kiwi, alt: "kiwi", clickable: false },
@@ -154,9 +154,32 @@ function isOverlapping(a, b) {
   );
 }
 
-export default function Logo() {
+export default function Logo({onGhostClick}) {
   const [activeComponent, setActiveComponent] = useState(null);
   const [escapeRect, setEscapeRect] = useState(null);
+
+   // --- Voix naturelle ---
+   const speakVoice = (text) => {
+    if ("speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "fr-FR";
+
+      // Choisir une voix naturelle si disponible
+      const voices = window.speechSynthesis.getVoices();
+      const selectedVoice = voices.find(v => v.name.includes("Google") && v.lang.startsWith("fr")) || voices[0];
+      utterance.voice = selectedVoice;
+
+      utterance.rate = 1;   // vitesse normale
+      utterance.pitch = 1;  // hauteur normale
+      utterance.volume = 1; // volume normal
+
+      window.speechSynthesis.speak(utterance);
+    } else {
+      console.warn("La synthèse vocale n'est pas supportée par ce navigateur.");
+    }
+  };
+
+  
 
   useEffect(() => {
     const container = document.querySelector(".escape-container");
@@ -211,7 +234,12 @@ export default function Logo() {
       case "pink": setActiveComponent("pink"); break;
       case "orange": setActiveComponent("orange"); break;
       case "pacman": setActiveComponent("pacman"); break;
-      default: alert(`Tu as cliqué sur ${logo.alt} ! 👻`);
+      case "ghost-emoji":
+        if (typeof onGhostClick === "function") {
+          onGhostClick();
+          speakVoice(" Attention ! Tu as perdu trois minutes ! Bien essayé c'est le mauvais fantôme ");          
+      }
+      break;
     }
   };
 

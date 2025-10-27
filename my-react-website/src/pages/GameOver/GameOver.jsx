@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import EpsiaGame from "../../components/EpsiaGame/EpsiaGame";
 import "./GameOvercss.css";
 export default function GameOver() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function GameOver() {
           <br />
           Chaque erreur rapproche de la réussite.
         </p>
+        <EpsiaGame/>
 
         <button className="retry-button" onClick={() => navigate('/')}>
           Réessayer
@@ -26,4 +28,5 @@ export default function GameOver() {
       </main>
     </div>
   );
+  
 }
