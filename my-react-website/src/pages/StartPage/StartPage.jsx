@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../components/LogoPage/Logo";
 import "../../styles/App.css";
 import LogoImage from "../../components/LogoImage/LogoImage";
- 
+
 const MAX_SECONDS = 45 * 60; // 45 minutes
+const CORRECT_CODE = "pacmiom-pikaboieriviere-Quizarcad-Pics352-pinkydark";
 
 function PacManGame({ onWin }) {
   const [score, setScore] = useState(0);
@@ -34,7 +35,11 @@ function PacManGame({ onWin }) {
         <span className="pacman">😋</span>
       </div>
       <p>Avance Pac-Man en cliquant sur les points !</p>
-      {won && <div className="reward">Bravo, tu as gagné une clé : <b>PACKEY</b></div>}
+      {won && (
+        <div className="reward">
+          Bravo, tu as gagné une clé : <b>PACKEY</b>
+        </div>
+      )}
     </div>
   );
 }
@@ -44,11 +49,12 @@ function StartPage() {
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);
   const [step, setStep] = useState(0);
-  const [pacmanWon, setPacmanWon] = useState(false);
-  const [showHint, setShowHint] = useState(false); // révéler l'indice
+  const [showHint, setShowHint] = useState(false);
   const intervalRef = useRef(null);
   const [codeInput, setCodeInput] = useState("");
+  const [showError, setShowError] = useState(false);
 
+  // Chrono
   const start = () => {
     if (!running && seconds < MAX_SECONDS) {
       setRunning(true);
@@ -66,62 +72,48 @@ function StartPage() {
   };
 
   const formatTime = (s) =>
-    `${String(Math.floor((MAX_SECONDS - s) / 60)).padStart(2, "0")}:${String((MAX_SECONDS - s) % 60).padStart(2, "0")}`;
+    `${String(Math.floor((MAX_SECONDS - s) / 60)).padStart(2, "0")}:${String(
+      (MAX_SECONDS - s) % 60
+    ).padStart(2, "0")}`;
 
-  // Démarrer automatiquement au montage
   useEffect(() => {
     start();
     return () => clearInterval(intervalRef.current);
   }, []);
 
-  // Rediriger vers la page de game over quand le temps est écoulé
   useEffect(() => {
     if (seconds >= MAX_SECONDS) {
       navigate("/game-over");
     }
   }, [seconds, navigate]);
 
-  // Contrôle A (code caché)
-  const [showHidden, setShowHidden] = useState(false);
-  useEffect(() => {
-    const handler = (e) => {
-      if (e.ctrlKey && e.key.toLowerCase() === "a") setShowHidden(true);
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, []);
-
-  const goToStep = (n) => setStep(n);
-
-  // Remplacer la validation automatique du code par une validation manuelle
-  const [showError, setShowError] = useState(false);
+  // Valider le code
   const handleValidateCode = () => {
-    if (codeInput === "1234") {
-      setCodeInput("");
+    if (codeInput.trim().toLowerCase() === CORRECT_CODE.toLowerCase()) {
       navigate("/felicitation");
     } else {
       setShowError(true);
-      // masquer après 10 secondes
       setTimeout(() => setShowError(false), 10000);
     }
   };
 
-  // --- Fonction pour retirer 3 minutes du temps restant ---
+  // Retirer 3 minutes
   const removeTimes = () => {
-      // Ici, seconds = temps écoulé
-      // donc on ajoute 180 secondes écoulées → le temps restant baisse de 3 minutes
-  setSeconds((prevSeconds) => Math.min(prevSeconds + 180, MAX_SECONDS));
-    };
-  
+    setSeconds((prevSeconds) => Math.min(prevSeconds + 180, MAX_SECONDS));
+  };
+
   return (
-    
     <div className="escape-container">
       <header>
-        <LogoImage/>
+        <LogoImage />
       </header>
 
       <div className="chrono-section">
-        <div className={`chrono ${seconds >= MAX_SECONDS ? "chrono-finished" : ""}`}>
+        <div
+          className={`chrono ${
+            seconds >= MAX_SECONDS ? "chrono-finished" : ""
+          }`}
+        >
           {seconds < MAX_SECONDS ? formatTime(seconds) : "Temps écoulé !"}
         </div>
 
@@ -131,22 +123,21 @@ function StartPage() {
             placeholder="Entrez le code..."
             value={codeInput}
             onChange={(e) => setCodeInput(e.target.value)}
-            maxLength={10}
           />
-          <button onClick={handleValidateCode} disabled={!codeInput}>Valider</button>
-          <div className={`code-error ${showError ? 'show' : ''}`}>Mauvais code — réessaie !</div>
+          <button onClick={handleValidateCode}>Valider</button>
+          <div className={`code-error ${showError ? "show" : ""}`}>
+            Mauvais code — réessaie !
+          </div>
         </div>
 
         <div className="chrono-buttons">
-          {/* contrôles désactivés */}
           <button disabled> Démarrer </button>
           <button disabled> Pause </button>
           <button disabled> Réinitialiser </button>
         </div>
       </div>
 
-      {/* logo */}
-      <Logo onGhostClick={removeTimes}/>
+      <Logo onGhostClick={removeTimes} />
 
       <main>
         {step === 0 && (
@@ -165,7 +156,11 @@ function StartPage() {
                 🔑
               </span>
             </p>
-            {showHint && <p className="indice">(Indice : ce n'est pas un bouton, mais un emoji !)</p>}
+            {showHint && (
+              <p className="indice">
+                (Indice : ce n'est pas un bouton, mais un emoji !)
+              </p>
+            )}
           </div>
         )}
       </main>
